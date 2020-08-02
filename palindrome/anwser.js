@@ -1,35 +1,29 @@
-// --- Directions
-// Write a function that splits an array (first argument)
-// into groups the length of size (second argument) and
-// returns them as a two-dimensional array.
-// --- Examples
-// chunk(["a", "b", "c", "d"], 2) --> [[ "a", "b"], ["c", "d"]]
-// chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
+// Given a string, return true or false depending if the string
+// is a palindrome.  Palindromes are words that read the same backwards
+// and forwards. Make sure it is case insensitive!
+// --- Examples:
+//   palindrome("Madam") === true
+//   palindrome("love") === false
 
-function chunk(array, size) {
-  let res = [];
+function palindrome(str) {
+	str = str.toLowerCase();
+	console.log(str);
 
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
-    const last = res[res.length - 1];
+	// const reversed = str.split("").reverse().join("");
+	// console.log(reversed);
 
-    console.log("item: ", item);
-    console.log("last: ", last);
+	// if (str === reversed) {
+	//   return true;
+	// } else {
+	//   return false;
+	// }
 
-    if (!last || last.length === size) {
-      res.push([item]);
-      console.log("res.push: ", res);
-    } else {
-      last.push(item);
-      console.log("last.push: ", last);
-    }
-    console.log("result: ", res);
-  }
-  return res;
+	// 위의 코드를 더 간단하게 oneline으로 줄인 ver.
+	return str === str.split("").reverse().join("");
 }
 
-// chunk(["a", "b", "c", "d"], 2);
-chunk([0, 1, 2, 3, 4, 5], 4);
+palindrome("madam");
+
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -56,22 +50,28 @@ chunk([0, 1, 2, 3, 4, 5], 4);
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Array Chunking", () => {
-  it("chunk() works", () => {
-    let arr = ["a", "b", "c", "d"];
-    let chunked = chunk(arr, 2);
-    assert.deepEqual(chunked, [
-      ["a", "b"],
-      ["c", "d"],
-    ]);
-
-    arr = [0, 1, 2, 3, 4, 5];
-    chunked = chunk(arr, 4);
-    assert.deepEqual(chunked, [
-      [0, 1, 2, 3],
-      [4, 5],
-    ]);
-  });
+describe("Palindrome", () => {
+	it('"bcb" is a palindrome', () => {
+		assert.equal(palindrome("bcb"), true);
+	});
+	it('"   bcb" is not a palindrome', () => {
+		assert.equal(palindrome(" bcb"), false);
+	});
+	it('"bcb   " is not a palindrome', () => {
+		assert.equal(palindrome("bcb "), false);
+	});
+	it('"love" is not a palindrome', () => {
+		assert.equal(palindrome("love"), false);
+	});
+	it('"699996" a palindrome', () => {
+		assert.equal(palindrome("699996"), true);
+	});
+	it('"racecar" a palindrome', () => {
+		assert.equal(palindrome("bcb"), true);
+	});
+	it("is case insensitive.", () => {
+		assert.equal(palindrome("Trunk knurt"), true);
+	});
 });
 
 mocha.run();

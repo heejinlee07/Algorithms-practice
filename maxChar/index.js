@@ -3,7 +3,17 @@
 // maxChar("I loveeeeeee noodles") === "e"
 // maxChar("1337") === "3"
 
-function maxChar(str) {}
+function maxChar(str) {
+  let a = "";
+  for (let i = 0; i < str.length; i++) {
+    a = str.split("");
+    console.log(a);
+    b = a[i];
+    console.log(b);
+  }
+}
+
+maxChar("whatsss up");
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

@@ -5,7 +5,25 @@
 //   capitalize("I'm a little tea pot") --> 'I'm A Little Tea Pot'
 //   capitalize('sHoRt AnD sToUt') --> 'Short And Stout'
 
-function capitalize(str) {}
+function capitalize(str) {
+  console.log("str: ", str);
+
+  const arrOfWords = str.split(" ");
+  console.log("str.split: ", arrOfWords);
+
+  const arrOfWordsCased = [];
+
+  for (let i = 0; i < arrOfWords.length; i++) {
+    const word = arrOfWords[i];
+    console.log("arrOfWords[i]: ", word);
+
+    arrOfWordsCased.push(word[0].toUpperCase() + word.slice(1).toLowerCase());
+    console.log("대소문자 설정: ", arrOfWordsCased);
+  }
+  return arrOfWordsCased.join(" ");
+}
+
+capitalize("I'm a little tea pot");
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

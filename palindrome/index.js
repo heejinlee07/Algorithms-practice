@@ -5,7 +5,24 @@
 //   palindrome("Madam") === true
 //   palindrome("love") === false
 
-function palindrome(str) {}
+function palindrome(str) {
+  console.log("parameter: ", str);
+  str = str.toLowerCase();
+  console.log("toLowerCase(): ", str);
+  // 전달된 파라미터가 대소문자가 섞여있으면 정확한 판별이 되지 않으므로
+  // toLowerCase()를 이용하여 소문자로 변경
+
+  const string = str.split("");
+  console.log("split(''): ", string);
+  const reversed = string.reverse();
+  console.log("reverse(): ", reversed);
+  const backwords = reversed.join("");
+  console.log("join(''): ", backwords);
+  if (str === backwords) return true;
+  else return false;
+}
+
+palindrome("Madam");
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

@@ -5,23 +5,52 @@
 //   reverse('Hello!') === '!olleH'
 
 function reverse(str) {
-  console.log(str);
-  const splits = str.split("");
-  console.log(splits);
-  const reversed = splits.reverse();
-  console.log(reversed);
-  const result = reversed.join("");
-  console.log(result);
+  // const arr = str.split("");
+  // console.log(arr);
+  // arr.reverse();
+  // console.log(arr);
+  // const res = arr.join("");
+  // console.log(res);
+  // return res;
+  // 위의 코드를 이렇게 체이닝하여 한줄로 표현할 수 있다.
+  // return str.split("").reverse().join("");
 
-  return result;
-  //   const result = reversed.toString();
-  //   console.log(result);
-  //   const b = result.join();
-  //   console.log(b);
-  //   return result;
+  //만약 reverse()를 쓰지 않고 구현하라고 한다면?
+  // let res = "";
+  // for (let i = 0; i < str.length; i++) {
+  //   const char = str[i];
+  //   console.log("[char]", char);
+  //   res = char + res;
+  //   console.log("[res]", res);
+  // }
+  // return res;
+  // console.log(["res"], res);
+
+  //more advanced solution: using reduce method
+  const array = str.split("");
+  console.log(array);
+  return array.reduce((output, char) => {
+    console.log("before output: ", output);
+    console.log("before char: ", char);
+    output = char + output;
+    console.log("after output: ", output);
+    return output;
+  }, "");
+
+  // return str.split("").reduce((output, char) => {
+  //   output = char + output;
+  //   return output;
+  // }, "");
 }
 
 reverse("hello");
+
+/**
+ * 'meow'.split('').reverse()
+ *  ['w', 'o', 'e', 'm' ]
+ * meow'.split('').reverse().join('')
+ * 'woem'
+ */
 
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \

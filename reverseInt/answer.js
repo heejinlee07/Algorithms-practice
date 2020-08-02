@@ -1,35 +1,30 @@
-// --- Directions
-// Write a function that splits an array (first argument)
-// into groups the length of size (second argument) and
-// returns them as a two-dimensional array.
+// Given an integer, return an integer with the digits
+// reversed.
 // --- Examples
-// chunk(["a", "b", "c", "d"], 2) --> [[ "a", "b"], ["c", "d"]]
-// chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
+//   reverseInt(13) === 31
+//   reverseInt(404) === 404
+//   reverseInt(100) === 1
+//   reverseInt(-13) === -31
+//   reverseInt(-100) === -1
 
-function chunk(array, size) {
-  let res = [];
+function reverseInt(n) {
+  console.log(n);
+  let reversed = n.toString().split("").reverse().join("");
+  reversed = parseInt(reversed);
+  console.log(reversed);
+  console.log(n);
 
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
-    const last = res[res.length - 1];
-
-    console.log("item: ", item);
-    console.log("last: ", last);
-
-    if (!last || last.length === size) {
-      res.push([item]);
-      console.log("res.push: ", res);
-    } else {
-      last.push(item);
-      console.log("last.push: ", last);
-    }
-    console.log("result: ", res);
+  if (n < 0) {
+    console.log(n); //-321
+    console.log(reversed); //123
+    return reversed * -1; //-123
   }
-  return res;
+  console.log(reversed);
+  console.log(n);
+  return reversed;
 }
 
-// chunk(["a", "b", "c", "d"], 2);
-chunk([0, 1, 2, 3, 4, 5], 4);
+reverseInt(-321);
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -56,21 +51,19 @@ chunk([0, 1, 2, 3, 4, 5], 4);
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Array Chunking", () => {
-  it("chunk() works", () => {
-    let arr = ["a", "b", "c", "d"];
-    let chunked = chunk(arr, 2);
-    assert.deepEqual(chunked, [
-      ["a", "b"],
-      ["c", "d"],
-    ]);
+describe("Integer Reversal", () => {
+  it("reverseInt() works on positive numbers", () => {
+    assert.equal(reverseInt(3), 3);
+    assert.equal(reverseInt(13), 31);
+    assert.equal(reverseInt(100), 1);
+    assert.equal(reverseInt(1408), 8041);
+  });
 
-    arr = [0, 1, 2, 3, 4, 5];
-    chunked = chunk(arr, 4);
-    assert.deepEqual(chunked, [
-      [0, 1, 2, 3],
-      [4, 5],
-    ]);
+  it("reverseInt() works on negative numbers numbers", () => {
+    assert.equal(reverseInt(-3), -3);
+    assert.equal(reverseInt(-13), -31);
+    assert.equal(reverseInt(-100), -1);
+    assert.equal(reverseInt(-1408), -8041);
   });
 });
 

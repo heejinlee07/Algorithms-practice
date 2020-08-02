@@ -1,35 +1,34 @@
-// --- Directions
-// Write a function that splits an array (first argument)
-// into groups the length of size (second argument) and
-// returns them as a two-dimensional array.
+// Return the character most commonly used in the string.
 // --- Examples
-// chunk(["a", "b", "c", "d"], 2) --> [[ "a", "b"], ["c", "d"]]
-// chunk([0, 1, 2, 3, 4, 5], 4) -->  [[0, 1, 2, 3], [4, 5]]
+// maxChar("I loveeeeeee noodles") === "e"
+// maxChar("1337") === "3"
 
-function chunk(array, size) {
-  let res = [];
+function maxChar(str) {
+  let charCountObj = {};
+  let maxChar = ""; //what we return
+  let maxCount = 0; // how often a character appears now
 
-  for (let i = 0; i < array.length; i++) {
-    const item = array[i];
-    const last = res[res.length - 1];
+  // fill our character count object
+  for (let i = 0; i < str.length; i++) {
+    const char = str[i];
+    console.log("char = str[i]: ", char);
 
-    console.log("item: ", item);
-    console.log("last: ", last);
+    charCountObj[char] = charCountObj[char] + 1 || 1;
+    console.log("charCountObj: ", charCountObj);
+    console.log("charCountObj[char]: ", charCountObj[char]);
 
-    if (!last || last.length === size) {
-      res.push([item]);
-      console.log("res.push: ", res);
-    } else {
-      last.push(item);
-      console.log("last.push: ", last);
+    if (charCountObj[char] > maxCount) {
+      maxChar = char;
+      maxCount = charCountObj[char];
     }
-    console.log("result: ", res);
+    console.log("maxChar: ", maxChar);
+    console.log("maxCount: ", maxCount);
   }
-  return res;
+  return maxChar;
 }
 
-// chunk(["a", "b", "c", "d"], 2);
-chunk([0, 1, 2, 3, 4, 5], 4);
+maxChar("hello");
+
 // _________ _______  _______ _________   _______  _______  _______  _______  _______
 // \__   __/(  ____ \(  ____ \\__   __/  (  ____ \(  ___  )(  ____ \(  ____ \(  ____ \
 //    ) (   | (    \/| (    \/   ) (     | (    \/| (   ) || (    \/| (    \/| (    \/
@@ -56,21 +55,12 @@ chunk([0, 1, 2, 3, 4, 5], 4);
 mocha.setup("bdd");
 const { assert } = chai;
 
-describe("Array Chunking", () => {
-  it("chunk() works", () => {
-    let arr = ["a", "b", "c", "d"];
-    let chunked = chunk(arr, 2);
-    assert.deepEqual(chunked, [
-      ["a", "b"],
-      ["c", "d"],
-    ]);
-
-    arr = [0, 1, 2, 3, 4, 5];
-    chunked = chunk(arr, 4);
-    assert.deepEqual(chunked, [
-      [0, 1, 2, 3],
-      [4, 5],
-    ]);
+describe("Max Character", () => {
+  it("maxChar() finds the most frequently used character", () => {
+    assert.equal(maxChar("a"), "a");
+    assert.equal(maxChar("test"), "t");
+    assert.equal(maxChar("I loveeeeee noodles"), "e");
+    assert.equal(maxChar("1337"), "3");
   });
 });
 
